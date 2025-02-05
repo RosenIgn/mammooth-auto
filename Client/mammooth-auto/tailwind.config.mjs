@@ -8,10 +8,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        'bone-white': '#E0E1DD',
+        'main-white': '#E9EAE5',
+        'main-blue': '#1B67C9',
+        'light-blue': '#E9F0FA',
+        'dark-blue': '#172152',
+        'wrong-red': '#ff3333',
       },
+      fontFamily: {
+        'main': ['Poppins', 'sans-serif'],
+      }
     },
   },
-  plugins: [],
 };
