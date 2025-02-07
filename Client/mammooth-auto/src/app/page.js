@@ -1,26 +1,35 @@
-"use client";
-import { useState } from "react";
+import React from 'react';
 
-export default function HomePage() {
+export default function Home() {
   return (
     <div>
-      {/* Navbar */}
-      <nav className="bg-black p-4 text-white flex items-center">
-        <h1 className="text-2xl font-bold mr-10">Mammoth Auto</h1>
-        <ul className="flex space-x-16">
-          <li><a href="#" className="hover:underline">About Us</a></li>
-          <li><a href="#" className="hover:underline">Cars</a></li>
-          <li><a href="#" className="hover:underline">Sell your car</a></li>
-          <li><a href="#" className="hover:underline">Reviews</a></li>
-          <li><a href="#" className="hover:underline">Contact</a></li>
-        </ul>
-      </nav>
-      
-      {/* Home Content */}
-      <div className="p-6 text-center">
-         <p className="text-xl font-semibold italic mb-4">We won't let ICEs go extinct like mammoths did.</p>
-        <h1 className="text-4xl font-bold mb-6">Welcome to Mammoth Auto</h1>
-        <p className="text-lg mb-6">Find your dream car with us</p>
+      <div className='navbar'>
+        <div className='logo'>
+          <img src="/assets/mammoth_logo.png"/>
+        </div>
+        <div className='nav-buttons-all'>
+          <ul className='nav-buttons'>
+            <li><a href="">За нас</a></li>
+            <li><a href="">Обяви</a></li>
+            <li><a href="">Продай автомобил</a></li>
+            <li><a href="">Контакти</a></li>
+          </ul>
+          <ul className='nav-buttons2'>
+            <li><a href="/login">Влизане</a></li>
+            <li><a href="/register">Регистрация</a></li>
+          </ul>
+
+        </div>
+      </div>
+      <div className='background-img'>
+          <div className='home-content'>
+            <div className='moto'>We won't let ICEs go extinct like mammoths did.</div>
+            <h1>Mammoth Auto</h1>
+            <div className='subtitle'>С автомобил по поръчка получаваш точно това, което търсиш. Ние ще се погрижим за всичко останало.</div>
+            <div className='div-btn'>
+            <a href="/" className='order-btn'>Направи поръчка</a>
+            </div>
+          </div>
       </div>
     </div>
   );
