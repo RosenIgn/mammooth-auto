@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Navbar from 'components/navbar';
 
 const Page = () => {
   const [formData, setFormData] = useState({
@@ -48,6 +49,7 @@ const Page = () => {
 
   return (
     <div className="min-h-screen bg-light-blue flex items-center justify-center">
+      <Navbar/>
       <div className="flex flex-col items-center justify-center max-w-md w-full p-6 bg-base-100 rounded-lg shadow-md">
         <h2 className="text-3xl text-main-blue font-extrabold mb-6">Login</h2>
         <form
