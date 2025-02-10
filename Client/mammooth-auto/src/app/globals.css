@@ -160,7 +160,6 @@ body {
   gap: 70px; 
   flex-wrap: wrap; 
 }
-
 .comments-moto {
   color: #1b1b1b;
   display: flex;
@@ -171,11 +170,14 @@ body {
   padding-bottom: 50px;
   font-size: 40px;
   font-weight: bold;
-  max-width: 1300px; 
-  white-space: normal; 
+  max-width: 800px; /* Reduce width to control text wrapping */
+  white-space: normal; /* Ensure text can wrap to the next line */
   line-height: 1.2; 
-  padding-left: 500px;
+  margin: 0 auto; /* Center the container horizontally */
+  padding-left: 0; /* No left padding */
+  padding-right: 0; /* No right padding */
 }
+
 
 
 .icon-box {
@@ -214,4 +216,80 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.contacts-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 999999;
+  gap: 10px;
+}
+
+.contacts-content h1 {
+  font-size: 48px;
+  color: white;
+}
+.contacts-content .subtitle{
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+}
+.contacts-background-img {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; 
+  background-image: url("/assets/audi.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-height: 50vh;
+}
+.contacts-background-img::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(2, 5, 7, 0.9);
+}
+.contacts-info-building-background{
+  background-color:white ;
+  min-height: 80vh;
+} 
+.info-building-description-location {
+display: flex;
+flex-direction: column;
+padding-left: 100;
+}
+.info-building-content h2{
+  
+font-family:Halvar, "sans-serif";
+  font-size: 30px;
+  color: #5f5f5f;
+  font-weight: bold;
+  padding-left: 100;
+  padding-top: 30 ;
+  padding-bottom: 30 ;
+
+}
+.info-building-location-logo{
+  display: flex;
+  flex-direction: row;
+  gap: 10;
+}
+.info-building-worktime-logo{
+  display: flex;
+  flex-direction: row;
+  gap: 10;
+}
+.info-building-display{
+display: flex;
+flex-direction: row;
+gap: 50pt;
+}
+.bold{
+  font-weight: bold;
 }

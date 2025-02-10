@@ -10,7 +10,7 @@ export default function Navbar() {
               <li><a href="">За нас</a></li>
               <li><a href="">Обяви</a></li>
               <li><a href="">Продай автомобил</a></li>
-              <li><a href="">Контакти</a></li>
+              <li><a href="/Contacts">Контакти</a></li>
             </ul>
           </div>
           <div className='nav-buttons-all'>
