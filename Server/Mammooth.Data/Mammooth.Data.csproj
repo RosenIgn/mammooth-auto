@@ -2,7 +2,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Mammooth.Common\Mammooth.Common.csproj" />
-    <ProjectReference Include="..\Mammooth.Domain\Mammooth.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>

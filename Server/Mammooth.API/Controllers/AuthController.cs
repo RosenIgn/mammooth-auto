@@ -1,83 +1,32 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Mammooth.Common.Requests.Auth;
-using Mammooth.Data.Context;
-using Mammooth.Data.Entities;
-using Mammooth.Data.Repositories;
-using Microsoft.AspNetCore.Identity;
+using Mammooth.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Mammooth.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class Auth(AppDbContext dbContext, UserManager<User> userManager, SignInManager<User> signInManager, IPasswordHasher<User> passwordHasher, /*JwtService jwtService */ UserRepository userRepository) : Controller
+    public class Auth(IAuthService authService) : Controller
     {
-        private readonly AppDbContext _dbContext = dbContext;
-        private readonly UserManager<User> _userManager = userManager;
-        private readonly SignInManager<User> _signInManager = signInManager;
-        private readonly IPasswordHasher<User> _passwordHasher = passwordHasher;
-        // private readonly JwtService _jwtService;
-        private readonly UserRepository _userRepository = userRepository;
-
+        private readonly IAuthService _authService = authService;
         [HttpPost("Login")]
-        public async Task<IActionResult> Login([FromBody] CreateLoginRequest userData)
+        public async Task<IActionResult> Login([FromBody] CreateLoginRequest request)
         {
-            if (userData.Username == "" || userData.Password == "")
-            {
-                return Ok(new { message = $"You have not entered a username or password." });
-            }
-            var user = await _userManager.FindByNameAsync(userData.Username);
-            if (user != null)
-            {
-                var result = await _signInManager.PasswordSignInAsync(user, userData.Password, false, false);
-                if (result.Succeeded)
-                {
-                    var userId = await _userManager.GetUserIdAsync(user);
-                    // var jwt = _jwtService.Generate(userId);
+            var result = await _authService.LoginAsync(request);
+            if (result.Success)
+                return Ok(new { success = true, message = result.Message });
 
-                    return Ok(new { /*Jwt = jwt*/ Success = true });
-                }
-                return Ok(new { message = "The password you entered is incorrect, please try again." });
-            }
-            else
-            {
-                return Ok(new { message = $"No account found with username {userData.Username}." });
-            }
+            return BadRequest(new { success = false, message = result.Message });
         }
 
         [HttpPost("Register")]
-        public async Task<IActionResult> Register([FromBody] CreateRegisterRequest registerData)
+        public async Task<IActionResult> Register([FromBody] CreateRegisterRequest request)
         {
-            if (!ModelState.IsValid)
-            {
-                var errors = ModelState.Values.SelectMany(v => v.Errors)
-                                              .Select(e => e.ErrorMessage)
-                                              .ToList();
-                return BadRequest(errors);
-            }
+            var result = await _authService.RegisterAsync(request);
+            if (result.Success)
+                return Ok(new { success = true, message = result.Message });
 
-            User user = new()
-            {
-                UserName = registerData.Username,
-                NormalizedUserName = registerData.Username.ToUpper(),
-                Email = registerData.Email,
-                NormalizedEmail = registerData.Email.ToUpper()
-            };
-
-            user.PasswordHash = _passwordHasher.HashPassword(user, registerData.Password);
-
-            var result = await _userManager.CreateAsync(user);
-
-            if (!result.Succeeded)
-            {
-                var errors = result.Errors.Select(e => e.Description).ToList();
-                return BadRequest(errors);
-            }
-
-            return Ok(new { success = true, message = $"Registration successful" });
+            return BadRequest(new { success = false, message = result.Message });
         }
 
     }

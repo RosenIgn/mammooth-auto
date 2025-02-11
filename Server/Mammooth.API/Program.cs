@@ -2,6 +2,8 @@ using Mammooth.Data.Context;
 using Mammooth.Data.Entities;
 using Mammooth.Data.Interfaces;
 using Mammooth.Data.Repositories;
+using Mammooth.Domain.Interfaces;
+using Mammooth.Domain.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,6 +23,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<UserRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 // builder.Services.AddScoped<JwtService>();
 
 builder.Services.AddCors(options =>
