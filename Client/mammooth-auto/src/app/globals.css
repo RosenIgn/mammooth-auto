@@ -251,7 +251,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  min-height: 50vh;
+  min-height: 35vh;
 }
 
 .contacts-background-img::before {
@@ -265,6 +265,17 @@ body {
 .contacts-info-background {
   background-color: whitesmoke;
   min-height: 46vh;
+  display: flex;
+
+}
+
+.map {
+  margin-left: 200px;
+  margin-top: 20px;
+}
+
+.info-building-content {
+  display: flex;
 }
 
 .info-building-description-location {
@@ -273,7 +284,7 @@ body {
   padding-left: 100;
 }
 
-.info-building-content h2 {
+.info-building h2 {
 
   font-family: Halvar, "sans-serif";
   font-size: 30px;
@@ -285,36 +296,48 @@ body {
 
 }
 
-.info-building-location-logo {
+.info-building-logo {
   display: flex;
   flex-direction: row;
   gap: 10;
+  margin-bottom: 10px;
 }
 
-.info-building-worktime-logo {
+/*.info-building-location-logo {
   display: flex;
   flex-direction: row;
   gap: 10;
-}
+}*/
+
+/*.info-building-worktime-logo {
+  display: flex;
+  flex-direction: row;
+  gap: 10;
+}*/
 
 .info-building-display {
   display: flex;
-  flex-direction: row;
-  gap: 50pt;
+  flex-direction: column;
+  gap: 35px;
 }
 
 .info-building-display-2 {
   display: flex;
-  flex-direction: row;
-  gap: 238px;
+  flex-direction: column;
+  gap: 60px;
   padding-left: 100px;
   padding-top: 20px;
 }
 
-.contact-us-direct-logo {
+/*.contact-us-direct-logo {
   display: flex;
   flex-direction: row;
   gap: 10;
+}*/
+
+.contact-us {
+  display: flex;
+  justify-content: center;
 }
 
 .contact-button {
@@ -349,6 +372,10 @@ body {
 
 .bold {
   font-weight: bold;
+}
+
+.info-building p{
+  color: #1b1b1b;
 }
 
 /* Profile Dropdown */
