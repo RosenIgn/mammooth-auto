@@ -14,6 +14,7 @@ namespace Mammooth.API.Controllers
     public class CarAd(ICarAdService carAdService) : Controller
     {
         private readonly ICarAdService _carAdService = carAdService;
+
         [HttpPost("Create")]
         public async Task<IActionResult> CreateCarAd([FromBody] CreateCarAdRequest request)
         {
@@ -23,5 +24,19 @@ namespace Mammooth.API.Controllers
 
             return BadRequest(new { success = false, message = result.Message });
         }
+
+        [HttpGet("GetAllCarPreviews")]
+        public async Task<IActionResult> GetAllCarPreviewsAsync()
+        {
+            var (success, message, data) = await _carAdService.GetAllCarPreviewsAsync();
+
+            if (!success)
+            {
+                return BadRequest(new { success = false, message });
+            }
+
+            return Ok(new { success = true, message, data });
+        }
+
     }
 }

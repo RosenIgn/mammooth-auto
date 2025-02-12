@@ -11,30 +11,30 @@ export default function Navbar() {
     }, []);
 
 
-    useEffect(() => {
-      const getUser = async () => {
-        try {
-          const jwtToken = localStorage.getItem("jwt");
+    // useEffect(() => {
+    //   const getUser = async () => {
+    //     try {
+    //       const jwtToken = localStorage.getItem("jwt");
 
-          const response = await fetch(
-            "https://localhost:5022/api/Auth/GetUser",
-            {
-              method: "GET",
-              headers: {
-                Authorization: `Bearer ${jwtToken}`,
-              },
-            }
-          );
+    //       const response = await fetch(
+    //         "https://localhost:5022/api/Auth/GetUser",
+    //         {
+    //           method: "GET",
+    //           headers: {
+    //             Authorization: `Bearer ${jwtToken}`,
+    //           },
+    //         }
+    //       );
 
-          const data = await response.json();
-          setUsername(data.userName);
-        } catch (error) {
-          console.error("Error fetching user:", error);
-        }
-      };
+    //       const data = await response.json();
+    //       setUsername(data.userName);
+    //     } catch (error) {
+    //       console.error("Error fetching user:", error);
+    //     }
+    //   };
 
-      getUser();
-    }, []);
+    //   getUser();
+    // }, []);
 
     return (
         <div className='navbar'>
