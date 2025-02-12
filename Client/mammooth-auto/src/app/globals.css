@@ -255,9 +255,9 @@ body {
   height: 100%;
   background-color: rgba(2, 5, 7, 0.9);
 }
-.contacts-info-building-background{
-  background-color:white ;
-  min-height: 80vh;
+.contacts-info-background{
+  background-color:whitesmoke ;
+  min-height: 46vh;
 } 
 .info-building-description-location {
 display: flex;
@@ -289,6 +289,44 @@ font-family:Halvar, "sans-serif";
 display: flex;
 flex-direction: row;
 gap: 50pt;
+}
+.info-building-display-2{
+  display: flex;
+  flex-direction: row;
+  gap: 238px;
+  padding-left: 100px;
+  padding-top: 20px;
+}
+  .contact-us-direct-logo{
+    display: flex;
+    flex-direction: row;
+    gap: 10;
+}
+  .contact-button {
+    display: flex;
+    align-items: center;
+    background-color: #181818;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+.contact-button:hover {
+  background-color: #333;
+}
+.contact-button i {
+  margin-left: 8px;
+}
+.contact-button svg {
+  width: 18px;
+  height: 18px;
+  fill: white;
+  margin-left: 8px;
 }
 .bold{
   font-weight: bold;
