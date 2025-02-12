@@ -20,7 +20,7 @@ namespace Mammooth.Domain.Services
             {
                 return (false, "A car with this VIN is already listed.");
             }
-            var carAd = new Car()
+            var car = new Car()
             {
                 Brand = request.Brand,
                 Model = request.Model,
@@ -30,10 +30,17 @@ namespace Mammooth.Domain.Services
                 Color = request.Color,
                 VIN = request.VIN,
                 Description = request.Description,
-                PriceFromUser = request.PriceFromUser,
+                PriceFromUser = request.PriceFromUser
+            };
+            var carSellEnquery = new CarSellEnquery()
+            {
+                Car = car,
+                Status = "Pending",
+                AdminFeedback = "Not reviewed yet"
             };
 
-            _dbContext.Cars.Add(carAd);
+            _dbContext.Cars.Add(car);
+            _dbContext.CarSellEnqueries.Add(carSellEnquery);
             await _dbContext.SaveChangesAsync();
 
             return (true, "Car ad created successfully");

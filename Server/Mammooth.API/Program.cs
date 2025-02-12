@@ -25,6 +25,7 @@ builder.Services.AddScoped<UserRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ICarAdService, CarAdService>();
+builder.Services.AddScoped<IAdminService, AdminService>();
 // builder.Services.AddScoped<JwtService>();
 
 builder.Services.AddCors(options =>
