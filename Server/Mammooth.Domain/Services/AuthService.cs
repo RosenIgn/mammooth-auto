@@ -10,33 +10,33 @@ namespace Mammooth.Domain.Services
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly IPasswordHasher<User> _passwordHasher;
-        // private readonly JwtService _jwtService;
+        private readonly JwtService _jwtService;
 
-        public AuthService(UserManager<User> userManager, SignInManager<User> signInManager, IPasswordHasher<User> passwordHasher /*, JwtService jwtService */)
+        public AuthService(UserManager<User> userManager, SignInManager<User> signInManager, IPasswordHasher<User> passwordHasher, JwtService jwtService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _passwordHasher = passwordHasher;
-            // _jwtService = jwtService;
+            _jwtService = jwtService;
         }
 
-        public async Task<(bool Success, string Message)> LoginAsync(CreateLoginRequest request)
+        public async Task<(bool Success, string Message, string? JWT)> LoginAsync(CreateLoginRequest request)
         {
             if (string.IsNullOrWhiteSpace(request.Username) || string.IsNullOrWhiteSpace(request.Password))
-                return (false, "You have not entered a username or password.");
+                return (false, "You have not entered a username or password.", null);
 
             var user = await _userManager.FindByNameAsync(request.Username);
             if (user == null)
-                return (false, $"No account found with username {request.Username}.");
+                return (false, $"No account found with username {request.Username}.", null);
 
             var result = await _signInManager.PasswordSignInAsync(user, request.Password, false, false);
             if (!result.Succeeded)
-                return (false, "The password you entered is incorrect, please try again.");
+                return (false, "The password you entered is incorrect, please try again.", null);
 
             var userId = await _userManager.GetUserIdAsync(user);
-            // var jwt = _jwtService.Generate(userId);
+            var jwt = _jwtService.Generate(userId);
 
-            return (true, "Login successful");
+            return (true, "Login successful", jwt);
         }
 
         public async Task<(bool Success, string Message)> RegisterAsync(CreateRegisterRequest request)
@@ -62,6 +62,21 @@ namespace Mammooth.Domain.Services
             }
 
             return (true, "Registration successful");
+        }
+
+        public async Task<User?> GetUserFromTokenAsync(string token)
+        {
+            try
+            {
+                var verifiedToken = _jwtService.Verify(token);
+                string userId = verifiedToken.Issuer;
+
+                return await _userManager.FindByIdAsync(userId);
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }

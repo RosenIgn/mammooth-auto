@@ -1,10 +1,8 @@
 import React from 'react';
-import Navbar from 'components/navbar';
 
 export default function Contacts() {
     return (
         <div>
-            <Navbar />
                   <div className='contacts-background-img'>
                     <div className='contacts-content'>
                       <h1>Свържи се с нас   </h1>

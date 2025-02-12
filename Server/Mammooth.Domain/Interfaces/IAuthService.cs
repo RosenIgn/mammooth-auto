@@ -1,10 +1,12 @@
 using Mammooth.Common.Requests.Auth;
+using Mammooth.Data.Entities;
 
 namespace Mammooth.Domain.Interfaces
 {
     public interface IAuthService
     {
-        Task<(bool Success, string Message)> LoginAsync(CreateLoginRequest request);
+        Task<(bool Success, string Message, string? JWT)> LoginAsync(CreateLoginRequest request);
         Task<(bool Success, string Message)> RegisterAsync(CreateRegisterRequest request);
+        Task<User?> GetUserFromTokenAsync(string token);
     }
 }

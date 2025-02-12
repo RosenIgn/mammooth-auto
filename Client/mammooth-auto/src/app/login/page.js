@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Navbar from 'components/navbar';
 
 const Page = () => {
   const [formData, setFormData] = useState({
@@ -32,13 +31,11 @@ const Page = () => {
       },
       body: JSON.stringify(formData),
     });
-    console.log(response)
-    console.log(formData)
     const responseData = await response.json();
     if (responseData.success) {
-      // const expirationTime = new Date().getTime() + 30 * 60000; // 30 minutes from now
-      // localStorage.setItem("jwt", responseData.jwt);
-      // localStorage.setItem("jwtExpiration", expirationTime);
+      const expirationTime = new Date().getTime() + 30 * 60000; // 30 minutes from now
+      localStorage.setItem("jwt", responseData.jwt);
+      localStorage.setItem("jwtExpiration", expirationTime);
       window.location.href = "/";
       setValidation(false);
     } else {
@@ -49,7 +46,6 @@ const Page = () => {
 
   return (
     <div className="min-h-screen bg-light-blue flex items-center justify-center">
-      <Navbar/>
       <div className="flex flex-col items-center justify-center max-w-md w-full p-6 bg-base-100 rounded-lg shadow-md">
         <h2 className="text-3xl text-main-blue font-extrabold mb-6">Login</h2>
         <form

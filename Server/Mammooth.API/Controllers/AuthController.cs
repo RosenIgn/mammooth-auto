@@ -14,7 +14,7 @@ namespace Mammooth.API.Controllers
         {
             var result = await _authService.LoginAsync(request);
             if (result.Success)
-                return Ok(new { success = true, message = result.Message });
+                return Ok(new { success = true, message = result.Message, jwt = result.JWT });
 
             return BadRequest(new { success = false, message = result.Message });
         }
@@ -29,5 +29,24 @@ namespace Mammooth.API.Controllers
             return BadRequest(new { success = false, message = result.Message });
         }
 
+        [HttpGet("GetUser")]
+        public async Task<IActionResult> GetUser()
+        {
+            try
+            {
+                var authorizationHeader = HttpContext.Request.Headers.Authorization.ToString();
+                if (string.IsNullOrEmpty(authorizationHeader) || !authorizationHeader.StartsWith("Bearer "))
+                    return Unauthorized();
+
+                var jwt = authorizationHeader.Replace("Bearer ", "");
+                var user = await _authService.GetUserFromTokenAsync(jwt);
+
+                return user != null ? Ok(user) : Unauthorized();
+            }
+            catch
+            {
+                return Unauthorized();
+            }
+        }
     }
 }

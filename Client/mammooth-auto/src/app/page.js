@@ -1,10 +1,8 @@
 import React from 'react';
-import Navbar from 'components/navbar';
 
 export default function Home() {
   return (
     <div>
-      <Navbar />
       <div className='background-img'>
         <div className='home-content'>
           <div className='moto'>We won't let ICEs go extinct like mammoths did.</div>
