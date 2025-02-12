@@ -12,10 +12,10 @@ namespace Mammooth.Data.Entities
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
         [Required]
-        public string Brand { get; set; }
+        public required string Brand { get; set; }
 
         [Required]
-        public string Model { get; set; }
+        public required string Model { get; set; }
 
         [Required]
         public int Year { get; set; }
@@ -24,29 +24,28 @@ namespace Mammooth.Data.Entities
         public int Mileage { get; set; }
 
         [Required]
-        public string GearboxType { get; set; }
+        public required string GearboxType { get; set; }
 
         [Required]
-        public string Color { get; set; }
+        public required string Color { get; set; }
 
         [Required]
-        public string VIN { get; set; }
+        public required string VIN { get; set; }
 
         [Required]
-        public string Description { get; set; }
+        public required string Description { get; set; }
 
-        [Required]
-        public List<string> ImageUrls { get; set; }
+        // [Required]
+        // public List<string> ImageUrls { get; set; }
 
         [Required]
         public double PriceFromUser { get; set; }
 
         [Required]
-        public double SellingPrice { get; set; }
+        public double SellingPrice { get; set; } = 0;
 
-        [Required]
-        public User User { get; set; } 
-        
+        // [Required]
+        // public User User { get; set; }
     }
 
 }

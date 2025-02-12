@@ -1,0 +1,27 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Mammooth.Common.Requests.Auth;
+using Mammooth.Common.Requests.Car;
+using Mammooth.Domain.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Mammooth.API.Controllers
+{
+    [ApiController]
+    [Route("api/[controller]")]
+    public class CarAd(ICarAdService carAdService) : Controller
+    {
+        private readonly ICarAdService _carAdService = carAdService;
+        [HttpPost("Create")]
+        public async Task<IActionResult> CreateCarAd([FromBody] CreateCarAdRequest request)
+        {
+            var result = await _carAdService.CarAdAsync(request);
+            if (result.Success)
+                return Ok(new { success = true, message = result.Message });
+
+            return BadRequest(new { success = false, message = result.Message });
+        }
+    }
+}

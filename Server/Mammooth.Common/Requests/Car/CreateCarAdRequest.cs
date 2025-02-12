@@ -12,12 +12,12 @@ namespace Mammooth.Common.Requests.Car
         [Required(ErrorMessage = "Brand is required.")]
         [MinLength(2, ErrorMessage = "Brand must be at least 2 characters.")]
         [MaxLength(50, ErrorMessage = "Brand cannot be longer than 50 characters.")]
-        public string Brand { get; set; }
+        public required string Brand { get; set; }
 
         [Required(ErrorMessage = "Model is required.")]
         [MinLength(2, ErrorMessage = "Model must be at least 2 characters.")]
         [MaxLength(50, ErrorMessage = "Model cannot be longer than 50 characters.")]
-        public string Model { get; set; }
+        public required string Model { get; set; }
 
         [Required(ErrorMessage = "Year is required.")]
         [Range(1886, 2025, ErrorMessage = "Year must be between 1886 and 2050.")]
@@ -30,21 +30,21 @@ namespace Mammooth.Common.Requests.Car
         [Required(ErrorMessage = "Gearbox type is required.")]
         [MinLength(3, ErrorMessage = "Gearbox type must be at least 3 characters.")]
         [MaxLength(25, ErrorMessage = "Gearbox type cannot be longer than 20 characters.")]
-        public string GearboxType { get; set; }
+        public required string GearboxType { get; set; }
 
         [Required(ErrorMessage = "Color is required.")]
         [MinLength(3, ErrorMessage = "Color must be at least 3 characters.")]
         [MaxLength(20, ErrorMessage = "Color cannot be longer than 20 characters.")]
-        public string Color { get; set; }
+        public required string Color { get; set; }
 
         [Required(ErrorMessage = "VIN is required.")]
         [StringLength(17, MinimumLength = 17, ErrorMessage = "VIN must be exactly 17 characters.")]
-        public string VIN { get; set; }
+        public required string VIN { get; set; }
 
         [Required(ErrorMessage = "Description is required.")]
         [MinLength(5, ErrorMessage = "Description must be at least 5 characters.")]
         [MaxLength(1000, ErrorMessage = "Description cannot be longer than 1000 characters.")]
-        public string Description { get; set; }
+        public required string Description { get; set; }
 
         [Required(ErrorMessage = "Price is required.")]
         [Range(100, 1000000, ErrorMessage = "Price must be between 100 and 1,000,000")]
