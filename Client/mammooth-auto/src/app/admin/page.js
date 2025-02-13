@@ -10,13 +10,14 @@
 
 
 "use client"
-import { Condiment } from "next/font/google";
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function CarAdminRequestsPage() {
   const [cars, setCars] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
     const fetchCarRequests = async () => {
@@ -115,7 +116,7 @@ export default function CarAdminRequestsPage() {
     <div className="bg-white">
       <div className="contacts-background-img">
         <div className="contacts-content">
-          <h1>Административни заявки за коли</h1>
+          <h1>Админ - заявки за коли</h1>
           <div className="subtitle">Преглед и управление на заявки за продажба на коли</div>
         </div>
       </div>
@@ -164,6 +165,14 @@ export default function CarAdminRequestsPage() {
                   </button>
                 </div>
               )}
+              <div className="mt-4 flex justify-center space-x-4">
+                <a
+                  href={`/admin/${car.carId}`}
+                  className="bg-yellow-500 text-white px-4 py-2 rounded-lg">
+                  Разгледай
+                </a>
+              </div>
+
             </div>
           ))}
         </div>

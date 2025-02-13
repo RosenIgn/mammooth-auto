@@ -44,6 +44,7 @@ namespace Mammooth.Domain.Services
 
             request.SellingPrice = sellingPrice;
             request.Status = "Approved";
+            request.AdminFeedback = "(Autofilled) Approved - OK";
 
             await _dbContext.SaveChangesAsync();
             return (true, "Car sale request approved successfully. Selling price updated.");
@@ -68,6 +69,19 @@ namespace Mammooth.Domain.Services
 
             await _dbContext.SaveChangesAsync();
             return (true, "Car sale request rejected successfully.");
+        }
+
+        public async Task<(bool Success, string Message, Car dataRetrieved)> GetCarById(string id)
+        {
+            var car = await _dbContext.Cars
+                    .FirstOrDefaultAsync(c => c.Id == id);
+
+            if (car == null)
+            {
+                return (false, "Car not found.", null);
+            }
+
+            return (true, "Car found successfully.", car);
         }
     }
 }

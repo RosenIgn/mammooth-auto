@@ -37,6 +37,19 @@ namespace Mammooth.API.Controllers
             return Ok(new { success = true, message, data });
         }
 
+        [HttpGet("GetCarById/{id}")]
+        public async Task<IActionResult> GetCarById(string id)
+        {
+            var (success, message, data) = await _adminService.GetCarById(id);
+
+            if (!success)
+            {
+                return BadRequest(new { success = false, message });
+            }
+
+            return Ok(new { success = true, message, data });
+        }
+
 
         [HttpPost("ApproveRequest/{id}")]
         public async Task<IActionResult> ApproveRequest(string id, [FromBody] JsonElement body)

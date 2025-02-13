@@ -1,16 +1,18 @@
 "use client"
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function CarAdsPage() {
   const [cars, setCars] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
     const fetchCarAds = async () => {
       try {
-        const response = await axios.get("https://localhost:5022/api/CarAd/GetAllCarPreviews"); 
+        const response = await axios.get("https://localhost:5022/api/CarAd/GetAllCarPreviews");
 
         if (response.data.success) {
           setCars(response.data.data);
@@ -69,14 +71,16 @@ export default function CarAdsPage() {
                   <span className="text-xl font-bold text-gray-500">
                     {car.sellingPrice.toLocaleString()} лв.
                   </span>
-                  <a href="#" className="bg-yellow-500 text-white px-4 py-2 rounded-lg">
+                  <a
+                    href={`/cars/${car.carId}`}
+                    className="bg-yellow-500 text-white px-4 py-2 rounded-lg">
                     Разгледай
                   </a>
                 </div>
               </div>
             ))}
           </div>
-        </div>      
+        </div>
       </div>
     </div>
   );

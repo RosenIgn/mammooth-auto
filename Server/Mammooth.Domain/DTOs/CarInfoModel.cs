@@ -12,10 +12,10 @@ using Mammooth.Data.Entities;
 
 namespace Mammooth.Common.DTOs
 {
-    public class CarAdminPreviewModel
+    public class CarInfoModel
     {
-        public string CarId {get; set;}
-
+        public string CarId { get; set; }
+        
         public string CarName { get; set; }
 
         public int Year { get; set; }
@@ -24,31 +24,34 @@ namespace Mammooth.Common.DTOs
 
         public string GearboxType { get; set; }
 
-        public double PriceFromUser { get; set; }
+        public string Color { get; set; }
+
+        public string VIN { get; set; }
+
+        public string Description { get; set; }
 
         public double SellingPrice { get; set; }
 
-        public string Status { get; set; }
+        // public List<string> ImageUrls { get; set; }
 
-        public string? AdminFeedback { get; set; } 
+        public DateTime CreatedAd { get; set; }
 
-        public DateTime CreatedAt { get; set; } 
+        // public User User { get; set; }
 
-        // public string TumbnailImageUrl { get; set; }
-
-        public CarAdminPreviewModel(Car car)
+        public CarInfoModel(Car car)
         {
             this.CarId = car.Id;
             this.CarName = car.Brand + " " + car.Model;
             this.Year = car.Year;
             this.Mileage = car.Mileage;
             this.GearboxType = car.GearboxType;
-            this.PriceFromUser = car.PriceFromUser;
+            this.Color = car.Color;
+            this.VIN = car.VIN;
+            this.Description = car.Description;
             this.SellingPrice = car.SellingPrice;
-            this.Status = car.Status;
-            this.AdminFeedback = car.AdminFeedback;
-            this.CreatedAt = car.CreatedAt;
-            //this.TumbnailImageUrl = car.ImageUrls[0];
+            //this.ImageUrls = car.ImageUrls;
+            this.CreatedAd = car.CreatedAt;
+            //this.User = car.User;
         }
     }
 }

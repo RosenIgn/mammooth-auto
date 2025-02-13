@@ -25,6 +25,19 @@ namespace Mammooth.API.Controllers
             return BadRequest(new { success = false, message = result.Message });
         }
 
+        [HttpGet("GetCarInfoById/{id}")]
+        public async Task<IActionResult> GetCarInfoById(string id)
+        {
+            var (success, message, data) = await _carAdService.GetCarInfoById(id);
+            
+            if (!success)
+            {
+                return BadRequest(new { success = false, message });
+            }
+
+            return Ok(new { success = true, message, data });
+        }
+
         [HttpGet("GetAllCarPreviews")]
         public async Task<IActionResult> GetAllCarPreviewsAsync()
         {

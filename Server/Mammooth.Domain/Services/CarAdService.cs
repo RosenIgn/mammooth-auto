@@ -74,6 +74,26 @@ namespace Mammooth.Domain.Services
             }
         }
 
+        public async Task<(bool Success, string Message, CarInfoModel data)> GetCarInfoById(string id)
+        {
+             try
+            {
+                Car? car = await _dbContext.Cars.FirstOrDefaultAsync(c => c.Id == id);
+                    
 
+                if (car == null)
+                {
+                    return (false, "Car not found", null);
+                }
+
+                CarInfoModel carInfo = new CarInfoModel(car);
+
+                return (true, "Car found successfully", carInfo);
+            }
+            catch (Exception ex)
+            {
+                return (false, $"Error: {ex.Message}", null);
+            }
+        }
     }
 }
