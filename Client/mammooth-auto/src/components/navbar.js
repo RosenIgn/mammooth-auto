@@ -80,9 +80,10 @@ export default function Navbar() {
       <div className="nav-buttons-all">
         <ul className="nav-buttons">
           <li><a href="/">Начало</a></li>
-          <li><a href="/">За нас</a></li>
-          <li><a href="/">Обяви</a></li>
-          <li><a href="/salecars">Продай автомобил</a></li>
+          <li><a href="/cars">Обяви</a></li>
+          {isLoggedIn && (
+            <li><a href="/sell">Продай автомобил</a></li>
+          )}
           <li><a href="/Contacts">Контакти</a></li>
         </ul>
       </div>
