@@ -4,6 +4,7 @@ using Mammooth.Common.Requests.Car;
 using Mammooth.Data.Context;
 using Mammooth.Data.Entities;
 using Mammooth.Domain.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -31,17 +32,13 @@ namespace Mammooth.Domain.Services
                 Color = request.Color,
                 VIN = request.VIN,
                 Description = request.Description,
-                PriceFromUser = request.PriceFromUser
-            };
-            var carSellEnquery = new CarSellEnquery()
-            {
-                Car = car,
+                PriceFromUser = request.PriceFromUser,
                 Status = "Pending",
                 AdminFeedback = "Not reviewed yet"
             };
 
+
             _dbContext.Cars.Add(car);
-            _dbContext.CarSellEnqueries.Add(carSellEnquery);
             await _dbContext.SaveChangesAsync();
 
             return (true, "Car ad created successfully");
@@ -51,19 +48,14 @@ namespace Mammooth.Domain.Services
         {
             try
             {
-                List<CarSellEnquery> enqueries = await _dbContext.CarSellEnqueries
-                    .Include(e => e.Car) // ✅ Ensure Car is included to avoid null reference
-                    .ToListAsync();
+                List<Car> carsForSale = _dbContext.Cars
+                    .Where(e => e.Status == "Approved") 
+                    .ToList();
 
-                if (enqueries == null || enqueries.Count == 0)
+                if (carsForSale == null)
                 {
                     return (false, "No car sale enquiries found.", new List<CarPreviewModel>());
                 }
-
-                List<Car> carsForSale = enqueries
-                    .Where(e => e.Status == "Approved" && e.Car != null) // ✅ Check for null
-                    .Select(e => e.Car)
-                    .ToList();
 
                 if (carsForSale.Count == 0)
                 {
@@ -81,6 +73,7 @@ namespace Mammooth.Domain.Services
                 return (false, $"Error: {ex.Message}", new List<CarPreviewModel>());
             }
         }
+
 
     }
 }

@@ -44,6 +44,15 @@ namespace Mammooth.Data.Entities
         [Required]
         public double SellingPrice { get; set; } = 0;
 
+        [Required]
+        public string? Status { get; set; } // "Pending", "Approved", "Rejected"
+
+        [Required]
+        public string? AdminFeedback { get; set; } // Feedback when rejected
+
+        [Required]
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
         // [Required]
         // public User User { get; set; }
     }

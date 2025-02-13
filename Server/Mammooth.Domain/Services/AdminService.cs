@@ -1,3 +1,4 @@
+using Mammooth.Common.DTOs;
 using Mammooth.Common.Requests.Auth;
 using Mammooth.Common.Requests.Car;
 using Mammooth.Data.Context;
@@ -12,10 +13,10 @@ namespace Mammooth.Domain.Services
     {
         private readonly AppDbContext _dbContext = dbContext;
 
-        public async Task<(bool Success, string Message, List<CarSellEnquery> dataRetrieved)> GetAllCarSellEnqueries()
+        public async Task<(bool Success, string Message, List<CarAdminPreviewModel> dataRetrieved)> GetAllCarSellEnqueries()
         {
-            var enqueries = await _dbContext.CarSellEnqueries
-                                    .Include(e => e.Car)
+            var enqueries = await _dbContext.Cars
+                                    .Select(c => new CarAdminPreviewModel(c))
                                     .ToListAsync();
 
             if (enqueries == null || enqueries.Count == 0)
@@ -26,11 +27,10 @@ namespace Mammooth.Domain.Services
             return (true, "Car sell inquiries retrieved successfully.", enqueries);
         }
 
-        public async Task<(bool Success, string Message)> ApproveEnquery(string enqueryId, double sellingPrice)
+        public async Task<(bool Success, string Message)> ApproveEnquery(string carId, double sellingPrice)
         {
-            var request = await _dbContext.CarSellEnqueries
-                                .Include(e => e.Car)
-                                .FirstOrDefaultAsync(e => e.Id == enqueryId);
+            var request = await _dbContext.Cars
+                                .FirstOrDefaultAsync(c => c.Id == carId);
 
             if (request == null)
             {
@@ -42,22 +42,17 @@ namespace Mammooth.Domain.Services
                 return (false, "This request has already been processed.");
             }
 
-            if (request.Car == null)
-            {
-                return (false, "Associated car not found.");
-            }
-
-            request.Car.SellingPrice = sellingPrice;
-
+            request.SellingPrice = sellingPrice;
             request.Status = "Approved";
 
             await _dbContext.SaveChangesAsync();
             return (true, "Car sale request approved successfully. Selling price updated.");
         }
 
-        public async Task<(bool Success, string Message)> RejectEnquery(string enqueryId, string feedback)
+        public async Task<(bool Success, string Message)> RejectEnquery(string carId, string feedback)
         {
-            var request = await _dbContext.CarSellEnqueries.FindAsync(enqueryId);
+            var request = await _dbContext.Cars
+                                .FirstOrDefaultAsync(c => c.Id == carId);
             if (request == null)
             {
                 return (false, "Car sale request not found.");

@@ -12,10 +12,10 @@ using Mammooth.Data.Entities;
 
 namespace Mammooth.Common.DTOs
 {
-    public class CarPreviewModel
+    public class CarAdminPreviewModel
     {
-        public string CarId { get; set; }
-        
+        public string CarId {get; set;}
+
         public string CarName { get; set; }
 
         public int Year { get; set; }
@@ -24,19 +24,31 @@ namespace Mammooth.Common.DTOs
 
         public string GearboxType { get; set; }
 
+        public double PriceFromUser { get; set; }
+
         public double SellingPrice { get; set; }
+
+        public string Status { get; set; }
+
+        public string? AdminFeedback { get; set; } 
+
+        public DateTime CreatedAt { get; set; } 
 
         // [Required]
         // public List<string> ImageUrls { get; set; }
 
-        public CarPreviewModel(Car car)
+        public CarAdminPreviewModel(Car car)
         {
             this.CarId = car.Id;
             this.CarName = car.Brand + " " + car.Model;
             this.Year = car.Year;
             this.Mileage = car.Mileage;
             this.GearboxType = car.GearboxType;
+            this.PriceFromUser = car.PriceFromUser;
             this.SellingPrice = car.SellingPrice;
+            this.Status = car.Status;
+            this.AdminFeedback = car.AdminFeedback;
+            this.CreatedAt = car.CreatedAt;
             //this.ImageUrls = car.ImageUrls;
         }
     }

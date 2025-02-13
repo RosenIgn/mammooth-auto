@@ -11,7 +11,6 @@ namespace Mammooth.Data.Context
 
         public DbSet<User> Users { get; set; }
         public DbSet<Car> Cars { get; set; }
-        public DbSet<CarSellEnquery> CarSellEnqueries { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -9,37 +9,44 @@
 
 
 
-"use client";
+"use client"
+import { Condiment } from "next/font/google";
 import React, { useEffect, useState } from "react";
 
-const AdminCarRequests = () => {
-  const [requests, setRequests] = useState([]);
+export default function CarAdminRequestsPage() {
+  const [cars, setCars] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch("https://localhost:5022/api/Admin/GetAllEnquieries", {
-      method: "GET",
-      headers: {
-        "Authorization": `Bearer ${localStorage.getItem("token")}`,
-        "Content-Type": "application/json"
-      }
-    })
-      .then(response => {
+    const fetchCarRequests = async () => {
+      try {
+        const response = await fetch("https://localhost:5022/api/Admin/GetAllEnquieries", {
+          method: "GET",
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem("token")}`,
+            "Content-Type": "application/json"
+          }
+        });
+
         if (!response.ok) {
           throw new Error("Failed to fetch data.");
         }
-        return response.json();
-      })
-      .then(data => {
-        setRequests(data.data);
+
+        const data = await response.json();
+        if (data.success) {
+          setCars(data.data);
+        } else {
+          setError(data.message);
+        }
+      } catch (err) {
+        setError("Failed to fetch car requests.");
+      } finally {
         setLoading(false);
-      })
-      .catch(error => {
-        console.error("Error fetching data:", error);
-        setError(error.message);
-        setLoading(false);
-      });
+      }
+    };
+
+    fetchCarRequests();
   }, []);
 
   const approveRequest = async (id) => {
@@ -48,7 +55,7 @@ const AdminCarRequests = () => {
       alert("Invalid selling price.");
       return;
     }
-
+  
     const response = await fetch(`https://localhost:5022/api/Admin/ApproveRequest/${id}`, {
       method: "POST",
       headers: {
@@ -57,22 +64,30 @@ const AdminCarRequests = () => {
       },
       body: JSON.stringify({ sellingPrice: parseFloat(sellingPrice) })
     });
-
+    console.log(id);
+    console.log(response);
+    console.log(parseFloat(sellingPrice));
     if (response.ok) {
       alert("Request approved!");
-      setRequests(requests.map(req => req.id === id ? { ...req, status: "Approved" } : req));
+      setCars(prevCars =>
+        prevCars.map(car =>
+          car.id === id
+            ? { ...car, status: "Approved", sellingPrice: parseFloat(sellingPrice) }
+            : car
+        )
+      );
     } else {
       alert("Failed to approve request.");
     }
   };
-
+  
   const rejectRequest = async (id) => {
     const feedback = prompt("Enter rejection reason:");
     if (!feedback) {
       alert("Feedback is required.");
       return;
     }
-
+  
     const response = await fetch(`https://localhost:5022/api/Admin/RejectRequest/${id}`, {
       method: "POST",
       headers: {
@@ -81,78 +96,80 @@ const AdminCarRequests = () => {
       },
       body: JSON.stringify({ feedback })
     });
-
+  
     if (response.ok) {
       alert("Request rejected!");
-      setRequests(requests.map(req => req.id === id ? { ...req, status: "Rejected" } : req));
+      setCars(prevCars =>
+        prevCars.map(car =>
+          car.id === id
+            ? { ...car, status: "Rejected", adminFeedback: feedback }
+            : car
+        )
+      );
     } else {
       alert("Failed to reject request.");
     }
   };
 
-  if (loading) return <p>Loading car requests...</p>;
-  if (error) return <p style={{ color: "red" }}>Error: {error}</p>;
-
   return (
-    <div>
-
-      <div className='background-img'>
-        <div className='home-content'>
-          <div className='moto'>ADMIN</div>
-          <h1>Mammoth Auto</h1>
-          <div className='subtitle'>ADMIN PANEL</div>
+    <div className="bg-white">
+      <div className="contacts-background-img">
+        <div className="contacts-content">
+          <h1>Административни заявки за коли</h1>
+          <div className="subtitle">Преглед и управление на заявки за продажба на коли</div>
         </div>
       </div>
-      <div>
-        <h2>Заявки от потребители</h2>
-      </div>
 
-      <h2>Car Sale Requests</h2>
-      <table border="1" cellPadding="10">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>User</th>
-            <th>Car</th>
-            <th>Requested Price</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {requests.length > 0 ? (
-            requests.map((request) => (
-              <React.Fragment key={request.id}>
-                <tr>
-                  <td>{request.id}</td>
-                  <td>{request.user?.fullName || "N/A"}</td>
-                  <td>{request.car?.make} {request.car?.model} ({request.car?.year})</td>
-                  <td>${request.requestedPrice}</td>
-                  <td>{request.status}</td>
-                </tr>
-                {request.status === "Pending" && (
-                  <tr key={`actions-${request.id}`}>
-                    <td colSpan="5" style={{ textAlign: "center" }}>
-                      <button onClick={() => approveRequest(request.id)} style={{ marginRight: "10px", padding: "5px 10px", backgroundColor: "green", color: "white", border: "none", cursor: "pointer" }}>
-                        ✅ Approve
-                      </button>
-                      <button onClick={() => rejectRequest(request.id)} style={{ padding: "5px 10px", backgroundColor: "red", color: "white", border: "none", cursor: "pointer" }}>
-                        ❌ Reject
-                      </button>
-                    </td>
-                  </tr>
-                )}
-              </React.Fragment>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="5" style={{ textAlign: "center" }}>No car sale requests available.</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+      <div className="container mx-auto mt-5 px-4">
+        <div className="flex flex-col items-center text-center">
+          <div className="uppercase text-gray-600 font-bold">
+            Админ панел - Заявки за коли
+          </div>
+          <h2 className="text-2xl font-semibold mt-2 text-gray-500">
+            Управлявайте заявките за продажба
+          </h2>
+        </div>
+
+        {loading && <p className="text-center text-gray-600">Зареждане...</p>}
+        {error && <p className="text-center text-red-500">{error}</p>}
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {cars.map((car, index) => (
+            <div key={index} className="border p-4 rounded-lg shadow-md">
+              <h3 className="mt-3 text-lg font-semibold text-gray-500">
+                {car.carName}
+              </h3>
+              <p className="text-gray-500">Година: {car.year}</p>
+              <p className="text-gray-500">Пробег: {car.mileage} км</p>
+              <p className="text-gray-500">Скоростна кутия: {car.gearboxType}</p>
+              <p className="text-gray-500">Потребителска цена: {car.priceFromUser.toLocaleString()} лв.</p>
+              <p className="text-gray-500">Предложена продажна цена: {car.sellingPrice.toLocaleString()} лв.</p>
+              <p className={`font-bold ${car.status === "Pending" ? "text-yellow-500" : car.status === "Approved" ? "text-green-500" : "text-red-500"}`}>
+                Статус: {car.status}
+              </p>
+              {car.adminFeedback && <p className="text-gray-500">Обратна връзка: {car.adminFeedback}</p>}
+              <p className="text-gray-500">Дата на създаване: {new Date(car.createdAt).toLocaleDateString()}</p>
+
+              {car.status === "Pending" && (
+                <div className="mt-4 flex justify-center space-x-4">
+                  <button
+                    onClick={() => approveRequest(car.carId)}
+                    className="bg-green-500 text-white px-4 py-2 rounded-lg">
+                    ✅ Одобри
+                  </button>
+                  <button
+                    onClick={() => rejectRequest(car.carId)}
+                    className="bg-red-500 text-white px-4 py-2 rounded-lg">
+                    ❌ Отхвърли
+                  </button>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
-};
+}
 
-export default AdminCarRequests;
 
