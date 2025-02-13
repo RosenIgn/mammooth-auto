@@ -8,8 +8,8 @@ namespace Mammooth.Domain.Interfaces
     {
 
         Task<(bool Success, string Message, List<CarAdminPreviewModel> dataRetrieved)> GetAllCarSellEnqueries();
+        Task<(bool Success, string Message, Car dataRetrieved)> GetCarById(string id);
         Task<(bool Success, string Message)> ApproveEnquery(string carId, double sellingPrice);
         Task<(bool Success, string Message)> RejectEnquery(string carId, string feedback);
-        //Task<(bool Success, string Message)> RegisterAsync(CreateRegisterRequest request);
     }
 }
