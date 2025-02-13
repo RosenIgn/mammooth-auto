@@ -45,40 +45,49 @@ const Page = () => {
   };
 
   return (
-    <div className="min-h-screen bg-light-blue flex items-center justify-center">
-      <div className="flex flex-col items-center justify-center max-w-md w-full p-6 bg-base-100 rounded-lg shadow-md">
-        <h2 className="text-3xl text-main-blue font-extrabold mb-6">Login</h2>
-        <form
-          className="flex flex-col w-full items-center justify-center"
-          onSubmit={handleSubmit}
-        >
-          <input
-            label="Username"
-            type="text"
-            name="username"
-            placeholder="Username"
-            value={formData.username}
-            onChange={handleChange}
-            className="input w-full border-light-blue text-black mb-0"
-          />
-          <input
-            label="Password"
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={formData.password}
-            onChange={handleChange}
-            className="input w-full border-light-blue text-black mt-4 mb-6"
-          />
-          {validation && <p className="text-wrong-red">{validationMessage}</p>}
-          <br />
-          <button
-            className="btn w-full hover:text-base-content bg-main-blue text-base-200"
-            type="submit"
-          >
-            Login
-          </button>
-        </form>
+    <div className="login-body">
+      <div className="login-container">
+        <div className="login-box">
+          <h1>Log in</h1>
+          <span className="signup-span">
+            Don't have an account?{" "}
+            <a href="/signup" className="signup-btn">
+              Sign up
+            </a>
+          </span>
+          <button className="social-btn">Log in with Google</button>
+          <div className="or-seperator">
+            <hr className="or-line" />
+            <p>OR</p>
+            <hr className="or-line" />
+          </div>
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="username">Your username</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              className="input-field"
+            />
+            <label htmlFor="password">Your password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              className="input-field"
+            />
+            {validation && (
+              <p className="validation-message">{validationMessage}</p>
+            )}
+            <button type="submit" className="login-btn">
+              Log in
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );

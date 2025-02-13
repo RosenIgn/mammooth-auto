@@ -7,6 +7,7 @@ namespace Mammooth.Domain.Interfaces
     {
         Task<(bool Success, string Message, string? JWT)> LoginAsync(CreateLoginRequest request);
         Task<(bool Success, string Message)> RegisterAsync(CreateRegisterRequest request);
+        Task LogoutAsync();
         Task<User?> GetUserFromTokenAsync(string token);
     }
 }

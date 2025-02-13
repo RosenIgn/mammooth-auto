@@ -374,7 +374,7 @@ body {
   font-weight: bold;
 }
 
-.info-building p{
+.info-building p {
   color: #1b1b1b;
 }
 
@@ -433,4 +433,101 @@ body {
 
 .dropdown-menu li:hover {
   background: #333;
+}
+
+.login-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url('/assets/mercedes.png') no-repeat center center/cover;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.login-box {
+  background: white;
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 525px;
+  height: auto;
+  width: 100%;
+}
+
+.login-body h1 {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+  color: #333333;
+  font-size: 32px;
+  font-family: "Poppins";
+  font-weight: 600;
+}
+
+.social-btn {
+  width: 100%;
+  padding: 15px;
+  margin: 30px 0 15px 0;
+  border: 1px solid #333333;
+  border-radius: 24px;
+  color: #333333;
+  background-color: white;
+  cursor: pointer;
+}
+
+.login-body input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background: gray;
+  color: white;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.login-box label {
+  font-size: 14px;
+  color: #333333;
+}
+
+.or-seperator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #333333;
+  margin: 10px 0;
+}
+
+.or-line {
+  width: 150px;
+}
+
+.signup-span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  color: #333333;
+}
+
+.signup-btn {
+  color: #ffca29;
+  text-decoration: underline;
 }

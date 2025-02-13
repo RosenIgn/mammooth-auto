@@ -78,5 +78,9 @@ namespace Mammooth.Domain.Services
                 return null;
             }
         }
+        public async Task LogoutAsync()
+        {
+            await _signInManager.SignOutAsync();
+        }
     }
 }

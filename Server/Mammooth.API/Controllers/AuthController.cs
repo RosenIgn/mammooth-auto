@@ -48,5 +48,13 @@ namespace Mammooth.API.Controllers
                 return Unauthorized();
             }
         }
+
+        [HttpPost("Logout")]
+        public async Task<IActionResult> Logout()
+        {
+            await _authService.LogoutAsync();
+            Response.Cookies.Delete("jwt");
+            return Ok(new { success = true, message = "Logout successful" });
+        }
     }
 }
