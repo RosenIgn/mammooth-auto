@@ -20,7 +20,7 @@ const Page = () => {
 
     if (!formData.username || !formData.password) {
       setValidation(true);
-      setValidationMessage("Please enter both username and password.");
+      setValidationMessage("Моля въведете потребителско име и парола");
       return;
     }
 
@@ -48,21 +48,21 @@ const Page = () => {
     <div className="login-body">
       <div className="login-container">
         <div className="login-box">
-          <h1>Log in</h1>
+          <h1>Влизане</h1>
           <span className="signup-span">
-            Don't have an account?{" "}
+            Нямаш акаунт?{" "}
             <a href="/signup" className="signup-btn">
-              Sign up
+              Регистриране 
             </a>
           </span>
-          <button className="social-btn">Log in with Google</button>
+          <button className="social-btn">Влез с Google акаунт</button>
           <div className="or-seperator">
             <hr className="or-line" />
-            <p>OR</p>
+            <p>или</p>
             <hr className="or-line" />
           </div>
           <form onSubmit={handleSubmit}>
-            <label htmlFor="username">Your username</label>
+            <label htmlFor="username">Твоето потребителско име</label>
             <input
               type="text"
               id="username"
@@ -71,7 +71,7 @@ const Page = () => {
               onChange={handleChange}
               className="input-field"
             />
-            <label htmlFor="password">Your password</label>
+            <label htmlFor="password">Твоята парола</label>
             <input
               type="password"
               id="password"
@@ -84,7 +84,7 @@ const Page = () => {
               <p className="validation-message">{validationMessage}</p>
             )}
             <button type="submit" className="login-btn">
-              Log in
+              Влезте
             </button>
           </form>
         </div>
