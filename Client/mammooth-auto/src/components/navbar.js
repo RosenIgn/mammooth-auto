@@ -85,6 +85,7 @@ export default function Navbar() {
             <li><a href="/sell">Продай автомобил</a></li>
           )}
           <li><a href="/Contacts">Контакти</a></li>
+          <li><a href="/For-us">За нас</a></li>
         </ul>
       </div>
       <div className="nav-buttons-all">

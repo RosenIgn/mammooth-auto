@@ -51,21 +51,21 @@ const Page = () => {
     <div className="login-body">
       <div className="login-container">
         <div className="login-box">
-          <h1>Register</h1>
+          <h1>Регистриране</h1>
           <span className="signup-span">
-            Already have an account?{" "}
+            Вече имаш акаунт?{" "}
             <a href="/login" className="signup-btn">
-              Log in
+              Влезте
             </a>
           </span>
-          <button className="social-btn">Register with Google</button>
+          <button className="social-btn">Регистрирай се с Google</button>
           <div className="or-seperator">
             <hr className="or-line" />
-            <p>OR</p>
+            <p>или</p>
             <hr className="or-line" />
           </div>
           <form onSubmit={handleSubmit}>
-            <label htmlFor="Username">Your username</label>
+            <label htmlFor="Username">Твоето потребителско име</label>
             <input
               type="text"
               id="Username"
@@ -74,7 +74,7 @@ const Page = () => {
               onChange={handleChange}
               className="input-field"
             />
-            <label htmlFor="Email">Your email</label>
+            <label htmlFor="Email">Твоят имейл</label>
             <input
               type="email"
               id="Email"
@@ -83,7 +83,7 @@ const Page = () => {
               onChange={handleChange}
               className="input-field"
             />
-            <label htmlFor="Password">Your password</label>
+            <label htmlFor="Password">Твоята парола</label>
             <input
               type="password"
               id="Password"
@@ -92,7 +92,7 @@ const Page = () => {
               onChange={handleChange}
               className="input-field"
             />
-            <label htmlFor="ConfirmPassword">Confirm your password</label>
+            <label htmlFor="ConfirmPassword">потвърди твоята парола</label>
             <input
               type="password"
               id="ConfirmPassword"
@@ -105,7 +105,7 @@ const Page = () => {
               <p className="validation-message">{validationMessages}</p>
             )}
             <button type="submit" className="login-btn">
-              Register
+              Регистрирай се
             </button>
           </form>
         </div>

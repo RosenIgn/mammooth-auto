@@ -531,3 +531,96 @@ body {
   color: #ffca29;
   text-decoration: underline;
 }
+.for-us-background-img {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-image: url("/assets/bmw.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-height: 50vh;
+}
+.for-us-background-img::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.for-us-content h1 {
+  font-size: 48px;
+  color: white;
+}
+
+.for-us-content .subtitle {
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+}
+
+.for-us-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20px;
+}
+
+.for-us-information {
+  flex: 1;
+  text-align: left;
+  padding-left: 50px; /* Adjust if needed */
+}
+
+.for-us-information h1 {
+  font-size: 36px;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.for-us-information h2 {
+  font-size: 32px;
+  font-weight: bold;
+  color: #222;
+}
+
+.for-us-information p {
+  font-size: 16px;
+  color: #666;
+}
+
+.for-us-information ul {
+  list-style: none;
+  padding: 0;
+}
+
+.for-us-information ul li {
+  font-weight: bold;
+  font-size: 18px;
+  color: #000;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.for-us-information ul li::before {
+  content: "•";
+  color: gold;
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.for-us-image {
+  flex: 1;
+  height: 100%;
+}
+
+.for-us-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image stretches fully */
+  display: block;
+}
