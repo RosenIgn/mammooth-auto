@@ -213,42 +213,82 @@ export default function CarListingForm() {
           <ul>
             <li>
               <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none"><circle cx="14.5" cy="14.5" r="14.5" fill="#222222"></circle><path d="M10.0386 12.9177C9.44087 12.3441 8.49132 12.3637 7.91772 12.9614C7.34412 13.5591 7.36368 14.5087 7.96141 15.0823L10.0386 12.9177ZM13.0386 15.7966L10.0386 12.9177L7.96141 15.0823L10.9614 17.9612L13.0386 15.7966Z" fill="#E2C87B"></path><path d="M21.0599 12.0614C21.6461 11.4761 21.6468 10.5263 21.0614 9.94012C20.4761 9.3539 19.5263 9.35321 18.9401 9.93856L21.0599 12.0614ZM18.9401 9.93856L10.9284 17.9386L13.0482 20.0614L21.0599 12.0614L18.9401 9.93856Z" fill="#E2C87B"></path></svg>
-              Свържи се с нас
+              Опиши своят автомобил чрез формата
             </li>
 
             <li>
               <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none"><circle cx="14.5" cy="14.5" r="14.5" fill="#222222"></circle><path d="M10.0386 12.9177C9.44087 12.3441 8.49132 12.3637 7.91772 12.9614C7.34412 13.5591 7.36368 14.5087 7.96141 15.0823L10.0386 12.9177ZM13.0386 15.7966L10.0386 12.9177L7.96141 15.0823L10.9614 17.9612L13.0386 15.7966Z" fill="#E2C87B"></path><path d="M21.0599 12.0614C21.6461 11.4761 21.6468 10.5263 21.0614 9.94012C20.4761 9.3539 19.5263 9.35321 18.9401 9.93856L21.0599 12.0614ZM18.9401 9.93856L10.9284 17.9386L13.0482 20.0614L21.0599 12.0614L18.9401 9.93856Z" fill="#E2C87B"></path></svg>
-              Свържи се с нас
+              Изчакай одобрение на обявата от наш работник
             </li>
             
             <li>
               <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none"><circle cx="14.5" cy="14.5" r="14.5" fill="#222222"></circle><path d="M10.0386 12.9177C9.44087 12.3441 8.49132 12.3637 7.91772 12.9614C7.34412 13.5591 7.36368 14.5087 7.96141 15.0823L10.0386 12.9177ZM13.0386 15.7966L10.0386 12.9177L7.96141 15.0823L10.9614 17.9612L13.0386 15.7966Z" fill="#E2C87B"></path><path d="M21.0599 12.0614C21.6461 11.4761 21.6468 10.5263 21.0614 9.94012C20.4761 9.3539 19.5263 9.35321 18.9401 9.93856L21.0599 12.0614ZM18.9401 9.93856L10.9284 17.9386L13.0482 20.0614L21.0599 12.0614L18.9401 9.93856Z" fill="#E2C87B"></path></svg>
-              Свържи се с нас
+              След одобряване ние ще се погрижим всякакви проблеми да бъдат отстранени
             </li>
             
             <li>
               <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none"><circle cx="14.5" cy="14.5" r="14.5" fill="#222222"></circle><path d="M10.0386 12.9177C9.44087 12.3441 8.49132 12.3637 7.91772 12.9614C7.34412 13.5591 7.36368 14.5087 7.96141 15.0823L10.0386 12.9177ZM13.0386 15.7966L10.0386 12.9177L7.96141 15.0823L10.9614 17.9612L13.0386 15.7966Z" fill="#E2C87B"></path><path d="M21.0599 12.0614C21.6461 11.4761 21.6468 10.5263 21.0614 9.94012C20.4761 9.3539 19.5263 9.35321 18.9401 9.93856L21.0599 12.0614ZM18.9401 9.93856L10.9284 17.9386L13.0482 20.0614L21.0599 12.0614L18.9401 9.93856Z" fill="#E2C87B"></path></svg>
-              Свържи се с нас
-            </li>
-            
-            <li>
-              <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none"><circle cx="14.5" cy="14.5" r="14.5" fill="#222222"></circle><path d="M10.0386 12.9177C9.44087 12.3441 8.49132 12.3637 7.91772 12.9614C7.34412 13.5591 7.36368 14.5087 7.96141 15.0823L10.0386 12.9177ZM13.0386 15.7966L10.0386 12.9177L7.96141 15.0823L10.9614 17.9612L13.0386 15.7966Z" fill="#E2C87B"></path><path d="M21.0599 12.0614C21.6461 11.4761 21.6468 10.5263 21.0614 9.94012C20.4761 9.3539 19.5263 9.35321 18.9401 9.93856L21.0599 12.0614ZM18.9401 9.93856L10.9284 17.9386L13.0482 20.0614L21.0599 12.0614L18.9401 9.93856Z" fill="#E2C87B"></path></svg>
-              Свържи се с нас
+              Довършваме обявата като добавяме лека надценка на цената за труда по колата
             </li>
           </ul>
         </div>
 
         <div className="form">
           <h1>Опиши ни автомобила си:</h1>
-          <input id="brand" placeholder="Марка"/>
-          <input id="model" placeholder="Модел"/>
-          <input id="year" placeholder="Година на производство"/>
-          <input id="mileage" placeholder="Километри"/>
-          <input id="gearbox-type" placeholder="Тип скоростна кутия"/>
-          <input id="color" placeholder="Цвят"/>
-          <input id="vin" placeholder="VIN номер"/>
-          <input id="description" placeholder="Описание"/>
-          <input id="selling-price" placeholder="Цена"/>
+          
+          <div className="flex gap-2 items-center justify-between">
+            <label htmlFor="brand">Марка:</label>
+            <input className="textbox" name="brand" id="brand"/>
+          </div>
+
+          <div className="flex gap-2 items-center justify-between">
+            <label htmlFor="model">Модел:</label>
+            <input className="textbox" name="model" id="model"/>
+          </div>
+          
+          <div className="flex gap-2 items-center justify-between">
+            <label htmlFor="year">Година на производство:</label>
+            <input className="textbox" name="year" id="year"/>
+          </div>
+          
+          <div className="flex gap-2 items-center justify-between">
+            <label htmlFor="mileage">Километри:</label>
+            <input className="textbox" name="mileage" id="mileage"/>
+          </div>
+          
+          <div className="flex gap-2 items-center justify-between">
+            <label htmlFor="gearbox-type">Тип скоростна кутия:</label>
+            <select className="textbox" name="gearbox-type" id="gearbox-type">
+              <option value="manual">Ръчна</option>
+              <option value="automatic">Автоматична</option>
+              <option value="semiautomatic">Полуавтоматична</option>
+            </select>
+          </div>
+          
+          <div className="flex gap-2 items-center justify-between">
+            <label htmlFor="color">Цвят:</label>
+            <input className="textbox" name="color" id="color"/>
+          </div>
+          
+          <div className="flex gap-2 items-center justify-between">
+            <label htmlFor="vin">VIN номер:</label>
+            <input className="textbox" name="vin" id="vin"/>
+          </div>
+          
+          <div className="flex gap-2 items-center justify-between">
+            <label htmlFor="description">Описание:</label>
+            <textarea className="textbox" name="description" id="description"/>
+          </div>
+          
+          <div className="flex gap-2 items-center justify-between">
+            <label htmlFor="selling-price">Цена:</label>
+            <input className="textbox" name="selling-price" id="selling-price"/>
+          </div>
+          
+          <div className="submit-button">
+            <button>Подай заявка</button>
+          </div>
+          
         </div>
       </div>
     </div>
