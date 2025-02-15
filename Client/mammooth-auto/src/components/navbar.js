@@ -110,7 +110,7 @@ export default function Navbar() {
             </button>
             {isDropdownOpen && (
               <ul className="dropdown-menu">
-                <li><a href="/">Моите обяви</a></li>
+                {/* <li><a href="/">Моите обяви</a></li> */}
                 {isAdmin && (<li><a href="/admin">Админ панел</a></li>)}
                 <li><a href="/" onClick={handleLogoutClick}>Изход</a></li>
               </ul>

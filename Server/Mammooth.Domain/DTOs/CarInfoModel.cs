@@ -15,7 +15,7 @@ namespace Mammooth.Common.DTOs
     public class CarInfoModel
     {
         public string CarId { get; set; }
-        
+
         public string CarName { get; set; }
 
         public int Year { get; set; }
@@ -32,9 +32,9 @@ namespace Mammooth.Common.DTOs
 
         public double SellingPrice { get; set; }
 
-        // public List<string> ImageUrls { get; set; }
+        public string ImageUrls { get; set; }
 
-        public DateTime CreatedAd { get; set; }
+        public DateTime CreatedAt { get; set; }
 
         // public User User { get; set; }
 
@@ -49,9 +49,8 @@ namespace Mammooth.Common.DTOs
             this.VIN = car.VIN;
             this.Description = car.Description;
             this.SellingPrice = car.SellingPrice;
-            //this.ImageUrls = car.ImageUrls;
-            this.CreatedAd = car.CreatedAt;
-            //this.User = car.User;
+            this.ImageUrls = car.ImageUrls[0];
+            this.CreatedAt = car.CreatedAt;
         }
     }
 }

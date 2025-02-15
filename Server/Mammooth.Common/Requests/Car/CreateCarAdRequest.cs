@@ -50,10 +50,8 @@ namespace Mammooth.Common.Requests.Car
         [Range(100, 1000000, ErrorMessage = "Price must be between 100 and 1,000,000")]
         public double PriceFromUser { get; set; }
 
-        // [Required(ErrorMessage = "Username is required.")]
-        // [MinLength(5, ErrorMessage = "Username must be at least 5 characters.")]
-        // [MaxLength(20, ErrorMessage = "Username cannot be longer than 20 characters.")]
-        // public List<IFormFile> ImageUrls { get; set; }
+        [Required(ErrorMessage = "Image is required.")]
+        public required List<string> ImageUrls { get; set; }
 
     }
 }

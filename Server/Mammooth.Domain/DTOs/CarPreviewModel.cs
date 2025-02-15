@@ -15,7 +15,7 @@ namespace Mammooth.Common.DTOs
     public class CarPreviewModel
     {
         public string CarId { get; set; }
-        
+
         public string CarName { get; set; }
 
         public int Year { get; set; }
@@ -26,7 +26,7 @@ namespace Mammooth.Common.DTOs
 
         public double SellingPrice { get; set; }
 
-        // public string TumbnailImageUrl { get; set; }
+        public string ImageUrls { get; set; }
 
         public CarPreviewModel(Car car)
         {
@@ -36,7 +36,7 @@ namespace Mammooth.Common.DTOs
             this.Mileage = car.Mileage;
             this.GearboxType = car.GearboxType;
             this.SellingPrice = car.SellingPrice;
-            //this.TumbnailImageUrl = car.ImageUrls[0];
+            this.ImageUrls = car.ImageUrls[0];
         }
     }
 }

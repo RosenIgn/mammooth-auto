@@ -9,7 +9,7 @@ export default function Home() {
           <h1>Mammoth Auto</h1>
           <div className='subtitle'>С автомобил по поръчка получаваш точно това, което търсиш. Ние ще се погрижим за всичко останало.</div>
           <div className='div-btn'>
-            <a href="/" className='order-btn'>Направи поръчка</a>
+            <a href="/sell" className='order-btn'>Продай своят автомобил</a>
           </div>
         </div>
       </div>

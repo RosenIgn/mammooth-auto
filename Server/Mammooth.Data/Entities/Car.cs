@@ -35,8 +35,8 @@ namespace Mammooth.Data.Entities
         [Required]
         public required string Description { get; set; }
 
-        // [Required]
-        // public List<string> ImageUrls { get; set; }
+        [Required]
+        public List<string> ImageUrls { get; set; } = new List<string>();
 
         [Required]
         public double PriceFromUser { get; set; }

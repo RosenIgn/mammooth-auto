@@ -8,8 +8,7 @@ export default function Contacts() {
                     <div className='for-us-background-img'>
                     <div className='for-us-content'>
                       <h1>За нас   </h1>
-                      <div className='subtitle'>Запознай се с екипа ни и научи повече </div>
-                      <div className='subtitle'>за процеса на работа</div>
+                      <div className='subtitle'>Запознай се с екипа ни и научи повече за процеса на работа</div>
                     </div>
                   </div>
 

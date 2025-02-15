@@ -37,14 +37,14 @@ namespace Mammooth.Domain.Services
                 return (false, "Car sale request not found.");
             }
 
-            if (request.Status != "Pending")
+            if (request.Status != "В процес...")
             {
                 return (false, "This request has already been processed.");
             }
 
             request.SellingPrice = sellingPrice;
-            request.Status = "Approved";
-            request.AdminFeedback = "(Autofilled) Approved - OK";
+            request.Status = "Одобрен";
+            request.AdminFeedback = "Без забележки";
 
             await _dbContext.SaveChangesAsync();
             return (true, "Car sale request approved successfully. Selling price updated.");
@@ -59,7 +59,7 @@ namespace Mammooth.Domain.Services
                 return (false, "Car sale request not found.");
             }
 
-            if (request.Status != "Pending")
+            if (request.Status != "В процес...")
             {
                 return (false, "This request has already been processed.");
             }

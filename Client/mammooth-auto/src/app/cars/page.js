@@ -1,13 +1,11 @@
 "use client"
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useRouter } from "next/navigation";
 
 export default function CarAdsPage() {
   const [cars, setCars] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const router = useRouter();
 
   useEffect(() => {
     const fetchCarAds = async () => {
@@ -54,19 +52,19 @@ export default function CarAdsPage() {
         {error && <p className="text-center text-red-500">{error}</p>}
 
         {/* Car Listings */}
-        <div className="container mx-auto mt-5 px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="container mx-auto mt-5 px-4 max-w-5xl pb-8">
+          <div className="grid grid-cols-3 gap-4 mt-4">
             {cars.map((car, index) => (
-              <div key={index} className="flex flex-col border p-4 rounded-lg shadow-md">
-                <a href="#" className="block">
-                  <img src={car.image || "https://via.placeholder.com/300"} alt={car.carName} className="w-full rounded-md" />
+              <div key={index} className="border p-4 rounded-lg shadow-md h-full max-w-xs flex flex-col">
+                <a href={`/cars/${car.carId}`}>
+                  <img src={car.imageUrls} alt={car.title} className="w-auto" />
                 </a>
                 <h3 className="mt-3 text-lg font-semibold text-gray-500">
                   {car.carName}
                 </h3>
-                <p className="text-gray-500">{car.mileage} km</p>
-                <p className="text-gray-500">Година: {car.year}</p>
-                <p className="text-gray-500">Скоростна кутия: {car.gearboxType}</p>
+                <p className="text-gray-500">Година: <b>{car.year}</b></p>
+                <p className="text-gray-500">Пробег: <b>{car.mileage} км</b></p>
+                <p className="text-gray-500 mb-4">Скоростна кутия: <b>{car.gearboxType}</b></p>
                 <div className="mt-auto flex justify-between items-center">
                   <span className="text-xl font-bold text-gray-500">
                     {car.sellingPrice.toLocaleString()} лв.

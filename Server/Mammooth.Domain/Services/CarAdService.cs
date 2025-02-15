@@ -33,8 +33,9 @@ namespace Mammooth.Domain.Services
                 VIN = request.VIN,
                 Description = request.Description,
                 PriceFromUser = request.PriceFromUser,
-                Status = "Pending",
-                AdminFeedback = "Not reviewed yet"
+                Status = "В процес...",
+                AdminFeedback = "Няма",
+                ImageUrls = request.ImageUrls,
             };
 
 
@@ -49,7 +50,7 @@ namespace Mammooth.Domain.Services
             try
             {
                 List<Car> carsForSale = _dbContext.Cars
-                    .Where(e => e.Status == "Approved")
+                    .Where(e => e.Status == "Одобрен")
                     .ToList();
 
                 if (carsForSale == null)

@@ -14,7 +14,7 @@ namespace Mammooth.Common.DTOs
 {
     public class CarAdminPreviewModel
     {
-        public string CarId {get; set;}
+        public string CarId { get; set; }
 
         public string CarName { get; set; }
 
@@ -30,11 +30,11 @@ namespace Mammooth.Common.DTOs
 
         public string Status { get; set; }
 
-        public string? AdminFeedback { get; set; } 
+        public string? AdminFeedback { get; set; }
 
-        public DateTime CreatedAt { get; set; } 
+        public DateTime CreatedAt { get; set; }
 
-        // public string TumbnailImageUrl { get; set; }
+        public string ImageUrls { get; set; }
 
         public CarAdminPreviewModel(Car car)
         {
@@ -48,7 +48,7 @@ namespace Mammooth.Common.DTOs
             this.Status = car.Status;
             this.AdminFeedback = car.AdminFeedback;
             this.CreatedAt = car.CreatedAt;
-            //this.TumbnailImageUrl = car.ImageUrls[0];
+            this.ImageUrls = car.ImageUrls[0];
         }
     }
 }
