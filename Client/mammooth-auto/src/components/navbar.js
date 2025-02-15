@@ -19,6 +19,7 @@ const handleLogout = () => {
 
 export default function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAdmin, setAdmin] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [username, setUsername] = useState("");
 
@@ -54,8 +55,11 @@ export default function Navbar() {
         }
 
         const data = await response.json();
-        if (data && data.userName) {
-          setUsername(data.userName);
+        if (data && data.user.userName) {
+          setUsername(data.user.userName);
+          if (data.roles == "Admin") {
+            setAdmin(true);
+          }
         } else {
           console.error("Invalid response format", data);
         }
@@ -107,6 +111,7 @@ export default function Navbar() {
             {isDropdownOpen && (
               <ul className="dropdown-menu">
                 <li><a href="/">Моите обяви</a></li>
+                {isAdmin && (<li><a href="/admin">Админ панел</a></li>)}
                 <li><a href="/" onClick={handleLogoutClick}>Изход</a></li>
               </ul>
             )}

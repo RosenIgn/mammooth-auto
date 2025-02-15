@@ -39,9 +39,24 @@ namespace Mammooth.API.Controllers
                     return Unauthorized();
 
                 var jwt = authorizationHeader.Replace("Bearer ", "");
-                var user = await _authService.GetUserFromTokenAsync(jwt);
 
-                return user != null ? Ok(user) : Unauthorized();
+                var (user, roles) = await _authService.GetUserFromTokenAsync(jwt);
+
+                if (user == null)
+                {
+                    return Unauthorized();
+                }
+
+                // if (!roles.Contains("Admin"))
+                // {
+                //     return Unauthorized(new { success = false, message = "You do not have the required role." });
+                // }
+
+                return Ok(new
+                {
+                    user,
+                    roles
+                });
             }
             catch
             {
@@ -56,5 +71,6 @@ namespace Mammooth.API.Controllers
             Response.Cookies.Delete("jwt");
             return Ok(new { success = true, message = "Logout successful" });
         }
+
     }
 }

@@ -20,6 +20,47 @@ export default function CarAdminRequestsPage() {
   const router = useRouter();
 
   useEffect(() => {
+    const checkAdminRole = async () => {
+      const jwtToken = localStorage.getItem("jwt");
+
+      if (!jwtToken) {
+        console.log("User is not logged in");
+        router.push("/");
+        return;
+      }
+
+      try {
+        const response = await fetch("https://localhost:5022/api/Auth/GetUser", {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${jwtToken}`,
+          },
+        });
+
+        if (!response.ok) {
+          if (response.status === 401) {
+            localStorage.clear();
+            router.push("/");
+          }
+          return;
+        }
+
+        const data = await response.json();
+
+        if (data && data.roles && data.roles.includes("Admin")) {
+        } else {
+          router.push("/");
+        }
+      } catch (error) {
+        console.error("Error fetching user:", error);
+        router.push("/");
+      }
+    };
+
+    checkAdminRole();
+  }, [router]);
+
+  useEffect(() => {
     const fetchCarRequests = async () => {
       try {
         const response = await fetch("https://localhost:5022/api/Admin/GetAllEnquieries", {
@@ -72,7 +113,7 @@ export default function CarAdminRequestsPage() {
       alert("Request approved!");
       setCars(prevCars =>
         prevCars.map(car =>
-          car.id === id
+          car.carId === id
             ? { ...car, status: "Approved", sellingPrice: parseFloat(sellingPrice) }
             : car
         )
@@ -102,7 +143,7 @@ export default function CarAdminRequestsPage() {
       alert("Request rejected!");
       setCars(prevCars =>
         prevCars.map(car =>
-          car.id === id
+          car.carId === id
             ? { ...car, status: "Rejected", adminFeedback: feedback }
             : car
         )

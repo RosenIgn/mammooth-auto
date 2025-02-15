@@ -7,7 +7,7 @@ namespace Mammooth.Domain.Interfaces
     {
         Task<(bool Success, string Message)> CarAdAsync(CreateCarAdRequest request);
 
-        Task<(bool Success, string Message, CarInfoModel data)> GetCarInfoById(string id);
+        Task<(bool Success, string Message, CarInfoModel? data)> GetCarInfoById(string id);
 
         Task<(bool Success, string Message, List<CarPreviewModel> data)> GetAllCarPreviewsAsync();
     }

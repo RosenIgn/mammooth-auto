@@ -49,7 +49,7 @@ namespace Mammooth.Domain.Services
             try
             {
                 List<Car> carsForSale = _dbContext.Cars
-                    .Where(e => e.Status == "Approved") 
+                    .Where(e => e.Status == "Approved")
                     .ToList();
 
                 if (carsForSale == null)
@@ -74,12 +74,12 @@ namespace Mammooth.Domain.Services
             }
         }
 
-        public async Task<(bool Success, string Message, CarInfoModel data)> GetCarInfoById(string id)
+        public async Task<(bool Success, string Message, CarInfoModel? data)> GetCarInfoById(string id)
         {
-             try
+            try
             {
                 Car? car = await _dbContext.Cars.FirstOrDefaultAsync(c => c.Id == id);
-                    
+
 
                 if (car == null)
                 {

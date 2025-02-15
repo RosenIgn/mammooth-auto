@@ -64,18 +64,25 @@ namespace Mammooth.Domain.Services
             return (true, "Registration successful");
         }
 
-        public async Task<User?> GetUserFromTokenAsync(string token)
+        public async Task<(User? user, IList<string>? roles)> GetUserFromTokenAsync(string token)
         {
             try
             {
                 var verifiedToken = _jwtService.Verify(token);
                 string userId = verifiedToken.Issuer;
+                var user = await _userManager.FindByIdAsync(userId);
 
-                return await _userManager.FindByIdAsync(userId);
+                if (user == null)
+                {
+                    return (null, null);
+                }
+                var roles = await _userManager.GetRolesAsync(user);
+
+                return (user, roles);
             }
             catch
             {
-                return null;
+                return (null, null);
             }
         }
         public async Task LogoutAsync()
