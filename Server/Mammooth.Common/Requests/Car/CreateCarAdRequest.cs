@@ -43,7 +43,7 @@ namespace Mammooth.Common.Requests.Car
 
         [Required(ErrorMessage = "Description is required.")]
         [MinLength(5, ErrorMessage = "Description must be at least 5 characters.")]
-        [MaxLength(1000, ErrorMessage = "Description cannot be longer than 1000 characters.")]
+        [MaxLength(10000, ErrorMessage = "Description cannot be longer than 10000 characters.")]
         public required string Description { get; set; }
 
         [Required(ErrorMessage = "Price is required.")]

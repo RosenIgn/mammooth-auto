@@ -111,6 +111,7 @@ body {
 }
 
 .home-content h1 {
+  color: white;
   font-size: 48px;
 }
 
@@ -123,6 +124,7 @@ body {
 .home-content .subtitle {
   font-size: 12px;
   font-weight: bold;
+  color: white;
 }
 
 .order-btn {
@@ -150,7 +152,7 @@ body {
 
 .background-comments {
   background-color: bisque;
-  min-height: 80vh;
+  min-height: 45vh;
 }
 
 .comments-content {
@@ -532,6 +534,10 @@ body {
   visibility: hidden;
   transform: translateY(10px);
   transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.profile-dropdown {
+  margin-right: 20px;
 }
 
 .profile-dropdown:hover .dropdown-menu {
